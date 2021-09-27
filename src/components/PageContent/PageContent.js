@@ -9,13 +9,11 @@ function PageContent() {
     const [resp, setResp] = useState([]);
     const [ users, setUsers ] = useState([]);
         
-    const dispatchUserEvent = (url, actionType) => {
+    const dispatchUserEvent = (url, actionType, jsonInput) => {
         setUsers([])
 		switch (actionType) {
 			case 'GET':
                 setUsers([])
-                console.log("Users:")
-                console.log(users)
                 axios({
                     url: url,
                     method: actionType
@@ -37,7 +35,18 @@ function PageContent() {
                 return 
 			case 'POST':
 
-                const params = {name: "SAhil", gitLink: "ifsojfd", vidLink: "dfsiosjdf"};
+                try {
+                    var params = JSON.parse(jsonInput);
+                }
+                catch (error) {
+                    if (error instanceof SyntaxError) {
+                        alert("There was a syntax error. Please correct it and try again: " + error.message);
+                        return
+                    }
+                    else {
+                        throw error;
+                    }
+                }
 
                 axios.post(url, params,{
 
@@ -48,9 +57,8 @@ function PageContent() {
                     },
                     
                 })
-                .catch(e => console.log(e))
+                .catch(e => alert(e))
                 .then((response) =>    {
-                    
                     console.log(response)
                 });
                 
@@ -59,9 +67,8 @@ function PageContent() {
 
 				return;
             case 'DELETE':
-                console.log("delete")
                 axios.delete(url)
-                .catch(e => console.log(e))
+                .catch(e => alert(e))
                 .then((response) =>    {
                     
                     console.log(response)

@@ -1,25 +1,24 @@
 import React, { useState, useContext } from 'react'
 import { AppContext } from '../../Context';
-import { Input } from './elements.request'
+import { LinkInput, RawInput } from './elements.request'
 
-const axios = require("axios")
 
 
 function Request() {
 
-    const { resp, users, dispatchUserEvent } = useContext(AppContext);
+    const { users, dispatchUserEvent } = useContext(AppContext);
 
     const [url, setUrl] = useState("")
     const [jsonInput, setJSON] = useState("")
 
     const sendReq = () => { 
-
         if(url == "")
         {
             return
         }
-        dispatchUserEvent(url,  document.getElementById("reqType").value)
+        dispatchUserEvent(url,  document.getElementById("reqType").value, jsonInput)
         setUrl("")
+        setJSON("")
     }
 
     return (
@@ -30,12 +29,15 @@ function Request() {
                 <option value="PUT">PUT</option>
                 <option value="DELETE">DELETE</option>
             </select>
-            <Input type = "url" placeholder="http://example.com" id = "urlInput" value={url} onChange={e => {setUrl(e.target.value)}} required></Input>
+            <LinkInput type = "url" placeholder="http://example.com" id = "urlInput" value={url} onChange={e => {setUrl(e.target.value)}} required></LinkInput>
             <button onClick={sendReq}>Send Request</button>
 
             <br/>
-            <Input id = "jsonInput" value = {jsonInput} onChange = {e => {setJSON(e.target.value)}}></Input>
-            {users.map(user =><div><pre>{ JSON.stringify(user, null, 2)}</pre></div>)}
+            <LinkInput type = "string" placeholder="Key" id = "key" required/>
+            <LinkInput type = "string" placeholder="Value" id = "value" required/>
+            <br/>
+            
+            <RawInput id = "jsonInput" value = {jsonInput} onChange = {e => {setJSON(e.target.value)}} placeholder = "Enter raw JSON here"></RawInput>
         </>
     )
 }

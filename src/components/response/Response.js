@@ -4,11 +4,11 @@ import { Output } from './elements.response'
 
 function Response() {
 
-    const { resp } = useContext(AppContext);
+    const { users } = useContext(AppContext);
 
     return (
         <>
-            <Output>{resp}</Output>
+            {users.map(user =><div><pre>{ JSON.stringify(user, null, 2)}</pre></div>)}
         </>
     )
 }
