@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm install`
 
-Installs all required project dependencies from the ``package.json`` file.
+Installs all required project dependencies from the `package.json` file.
 
 ### `npm start`
 
