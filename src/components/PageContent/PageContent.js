@@ -17,8 +17,6 @@ function PageContent() {
 
             case "ADD":
 
-
-                //pairs.push([key,value])
                 setPairs([...pairs, [key, value]])
                 return
             
@@ -34,6 +32,17 @@ function PageContent() {
 		switch (actionType) {
 			case 'GET':
                 setUsers([])
+                
+                if(pairs.length > 0)
+                {
+                    url += "?"
+                    pairs.forEach(element => {
+                        url += element[0] + '=' + element[1] + '&'
+                    })
+                    url = url.substring(0, url.length - 2);
+                    console.log(url)
+                }
+
                 axios({
                     url: url,
                     method: actionType
@@ -52,6 +61,7 @@ function PageContent() {
                         setUsers([response.data])
                     }
                 });
+                setPairs([])
                 return 
 			case 'POST':
 
@@ -107,9 +117,8 @@ function PageContent() {
     return (
         <>
             <AppContext.Provider value={{ users, pairs, dispatchUserEvent, dispatchKeyVal }}>
+                <br/>
                 <Request />
-                <AddKeyVal />
-                <KeyValList />
                 <Response />
             </AppContext.Provider>
         </>

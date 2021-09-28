@@ -8,7 +8,6 @@ const KeyValList = () => {
 	return (
 		<>
             {pairs.map(pair =><KeyValPair KEY = {pair[0]} val = {pair[1]}/>)}
-            {console.log(pairs)}
 		</>
 	);
 };

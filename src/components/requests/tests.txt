@@ -1,1 +1,0 @@
-<div>{users.map(user => <div><pre>{ JSON.stringify(user, null, 2) }</pre></div> /*user: {user.name}<br/>gitLink: {user.gitLink}<br />vidLink: {user.vidLink}*/)}</div>

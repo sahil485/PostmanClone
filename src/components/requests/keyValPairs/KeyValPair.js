@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../../../Context';
+import { PairRow, FormInput1 } from './elements.keys';
+import { Button } from '../../../globalStyles';
 
 const KeyValPair = (props) => {
 	const { dispatchKeyVal } = useContext(AppContext);
@@ -11,9 +13,11 @@ const KeyValPair = (props) => {
 
 	return (
 		<>
-                <p>{"KEY: " + props.KEY}</p>
-                <p>{"VAL: " + props.val}</p>
-				<button onClick={handleRemovePair}>Delete</button>
+			<PairRow>
+				<FormInput1 type="key" value={props.KEY} readOnly={true}/>
+				<FormInput1 type="url" value={props.val} readOnly={true}/>
+				<Button onClick={handleRemovePair}>Delete</Button>
+			</PairRow>
 		</>
 	);
 };

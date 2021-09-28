@@ -1,6 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { AppContext } from '../../Context';
-import { LinkInput, RawInput } from './elements.request'
+import { RawInput, Select } from './elements.request'
+import { Button } from '../../globalStyles';
+import AddKeyVal from './keyValPairs/AddKeyVal';
+import KeyValList from './keyValPairs/KeyValList';
+import { FormInput, PairRow} from './keyValPairs/elements.keys';
 
 
 
@@ -23,19 +27,28 @@ function Request() {
 
     return (
         <>
-             <select class="form-select flex-grow-0 w-auto" id = "reqType" data-method>
+            <PairRow>
+             <Select id = "reqType" data-method>
                 <option value="GET" defaultValue>GET</option>
                 <option value="POST">POST</option>
                 <option value="PUT">PUT</option>
                 <option value="DELETE">DELETE</option>
-            </select>
-            <LinkInput type = "url" placeholder="http://example.com" id = "urlInput" value={url} onChange={e => {setUrl(e.target.value)}} required></LinkInput>
-            <button onClick={sendReq}>Send Request</button>
+            </Select>
 
+            <FormInput type = "url" placeholder="http://example.com" id = "urlInput" value={url} onChange={e => {setUrl(e.target.value)}} required/>
+            <Button onClick={sendReq}>Send</Button>
+            </PairRow>
             <br/>
             <br/>
+            <AddKeyVal />
+            <br/>
+            <KeyValList />
+            <br/>
+            <br/>
+            <RawInput id = "jsonInput" value = {jsonInput} onChange = {e => {setJSON(e.target.value)}} placeholder = "Enter raw JSON for POST/PUT requests here"></RawInput>
             
-            <RawInput id = "jsonInput" value = {jsonInput} onChange = {e => {setJSON(e.target.value)}} placeholder = "Enter raw JSON here"></RawInput>
+            <br/>
+            <br/>
         </>
     )
 }

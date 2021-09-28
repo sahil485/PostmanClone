@@ -1,8 +1,8 @@
 import styled from "styled-components"
+import { Container } from "../../globalStyles"
 
-export const Output = styled.p`
-height: 100px;
-width: 500px;
-border: 5px; 
-border-color: grey
+export const H4 = styled.h4`
+color: grey;
+padding: 0;
+margin: 0
 `
