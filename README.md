@@ -1,6 +1,6 @@
 # Postman Clone - React App
 
-A clone for the API development tool Postman as an Open Source Challenge from the Slingshot discord server
+A clone for the API development tool Postman as an Open Source Challenge from the Slingshot discord server. The current clone supports GET, POST, and DELETE requests with faulty PUT requests. 
 
 ## Scripts for Use:
 
