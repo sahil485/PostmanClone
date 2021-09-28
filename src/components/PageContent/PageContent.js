@@ -10,6 +10,7 @@ function PageContent() {
 
     const [ users, setUsers ] = useState([]);
     const [pairs, setPairs] = useState([])
+    const [resCode, setResCode] = useState([])
 
     const dispatchKeyVal = (key, value, actionType) => {
         console.log(actionType)
@@ -50,6 +51,8 @@ function PageContent() {
                 .catch(e => console.log(e))
                 .then((response) =>    {
                     
+                    setResCode(response.status)
+
                     if(typeof response.data == Array){
 
                         (response.data).forEach(element => {
@@ -90,6 +93,18 @@ function PageContent() {
                 .catch(e => alert(e))
                 .then((response) =>    {
                     console.log(response)
+                    setResCode(response.status)
+
+                    if(typeof response.data == Array){
+
+                        (response.data).forEach(element => {
+                            users.push(element)
+                            setUsers(users)
+                        })
+                    }
+                    else{
+                        setUsers([response.data])
+                    }
                 });
                 
 				return;
@@ -101,7 +116,8 @@ function PageContent() {
                 .catch(e => alert(e))
                 .then((response) =>    {
                     
-                    console.log(response)
+                    setResCode(response.status)
+
                 });    
 
                 return;
@@ -119,7 +135,7 @@ function PageContent() {
             <AppContext.Provider value={{ users, pairs, dispatchUserEvent, dispatchKeyVal }}>
                 <br/>
                 <Request />
-                <Response />
+                <Response resCode = {resCode}/>
             </AppContext.Provider>
         </>
     )

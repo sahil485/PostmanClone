@@ -9,6 +9,11 @@ width: 80px;
 border-radius: 10px;
 margin: 5px;
 font-size: 20px;
+&:hover{
+    transition: all 0.3s ease-out;
+    background: #fff;
+    color: #007FFF
+}
 
 `
 
