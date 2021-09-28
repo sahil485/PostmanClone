@@ -1,14 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AppContext } from '../../Context'
 import Request from '../requests/Request'
 import Response from '../response/Response'
+import AddKeyVal from '../requests/keyValPairs/AddKeyVal'
+import KeyValList from '../requests/keyValPairs/KeyValList'
 import axios from 'axios'
 
 function PageContent() {
 
-    const [resp, setResp] = useState([]);
     const [ users, setUsers ] = useState([]);
-        
+    const [pairs, setPairs] = useState([])
+
+    const dispatchKeyVal = (key, value, actionType) => {
+        console.log(actionType)
+        switch (actionType) {
+
+            case "ADD":
+
+
+                //pairs.push([key,value])
+                setPairs([...pairs, [key, value]])
+                return
+            
+            case "DELETE": 
+
+                setPairs(pairs.filter(pair => pair[0] != key))
+                return 
+        }
+    }
+
     const dispatchUserEvent = (url, actionType, jsonInput) => {
         setUsers([])
 		switch (actionType) {
@@ -80,10 +100,16 @@ function PageContent() {
 		}
 	};
 
+    useEffect(() => {
+        setPairs(pairs)
+    })
+
     return (
         <>
-            <AppContext.Provider value={{ resp, users, dispatchUserEvent }}>
+            <AppContext.Provider value={{ users, pairs, dispatchUserEvent, dispatchKeyVal }}>
                 <Request />
+                <AddKeyVal />
+                <KeyValList />
                 <Response />
             </AppContext.Provider>
         </>

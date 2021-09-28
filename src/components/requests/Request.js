@@ -6,7 +6,7 @@ import { LinkInput, RawInput } from './elements.request'
 
 function Request() {
 
-    const { users, dispatchUserEvent } = useContext(AppContext);
+    const { dispatchUserEvent } = useContext(AppContext);
 
     const [url, setUrl] = useState("")
     const [jsonInput, setJSON] = useState("")
@@ -33,8 +33,6 @@ function Request() {
             <button onClick={sendReq}>Send Request</button>
 
             <br/>
-            <LinkInput type = "string" placeholder="Key" id = "key" required/>
-            <LinkInput type = "string" placeholder="Value" id = "value" required/>
             <br/>
             
             <RawInput id = "jsonInput" value = {jsonInput} onChange = {e => {setJSON(e.target.value)}} placeholder = "Enter raw JSON here"></RawInput>
