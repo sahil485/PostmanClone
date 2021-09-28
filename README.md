@@ -2,7 +2,7 @@
 
 A clone for the API development tool Postman as an Open Source Challenge from the Slingshot discord server. The current app supports GET, POST, and DELETE requests with faulty PUT requests. 
 
-Demo Link: (https://youtu.be/YEIB1yJ7HFk)
+Demo Link: https://youtu.be/YEIB1yJ7HFk
 
 ## Scripts for Use:
 
