@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../../../Context';
 import { PairRow, FormInput1 } from './elements.keys';
-import { Button } from '../../../globalStyles';
+import { DeleteButton} from './elements.keys';
 
 const KeyValPair = (props) => {
 	const { dispatchKeyVal } = useContext(AppContext);
@@ -16,7 +16,7 @@ const KeyValPair = (props) => {
 			<PairRow>
 				<FormInput1 type="key" value={props.KEY} readOnly={true}/>
 				<FormInput1 type="url" value={props.val} readOnly={true}/>
-				<Button onClick={handleRemovePair}>Delete</Button>
+				<DeleteButton onClick={handleRemovePair}>Delete</DeleteButton>
 			</PairRow>
 		</>
 	);
