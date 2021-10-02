@@ -44,10 +44,7 @@ function PageContent() {
                     console.log(url)
                 }
 
-                axios({
-                    url: url,
-                    method: actionType
-                })
+                axios.get(url)
                 .catch(e => console.log(e))
                 .then((response) =>    {
                     
@@ -109,6 +106,32 @@ function PageContent() {
                 
 				return;
             case 'PUT':
+
+                axios.put(url, params,{
+
+                    "headers": {
+                    
+                    "content-type": "application/json",
+                    
+                    },
+                    
+                })
+                .catch(e => alert(e))
+                .then((response) =>    {
+                    console.log(response)
+                    setResCode(response.status)
+
+                    if(typeof response.data == Array){
+
+                        (response.data).forEach(element => {
+                            users.push(element)
+                            setUsers(users)
+                        })
+                    }
+                    else{
+                        setUsers([response.data])
+                    }
+                });
 
 				return;
             case 'DELETE':
